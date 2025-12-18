@@ -1,13 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="An interactive Nushell shell running in your browser via WebAssembly">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1e1e2e">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- iOS PWA Meta Tags (Critical for iPhone) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nushell">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- App Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+
+    <!-- Preload critical resources for faster loading -->
+    <link rel="preconnect" href="./" crossorigin>
+
+    <title>Nushell Web Demo</title>
+
+    <!-- Styles (compiled by Trunk from SCSS) -->
     <link data-trunk rel="scss" href="styles.scss"/>
-    <script src="https://unpkg.com/@alenaksu/json-viewer@2.1.0/dist/json-viewer.bundle.js"></script>
+
+    <!-- JSON Viewer (bundled locally for offline use) -->
+    <script data-trunk src="node_modules/@alenaksu/json-viewer/dist/json-viewer.bundle.js"></script>
+
+    <!-- Ace Editor -->
     <script data-trunk src="node_modules/ace-builds/src/ace.js"></script>
     <script data-trunk src="node_modules/ayu-ace/dark.js"></script>
     <script data-trunk src="node_modules/ayu-ace/light.js"></script>
+
+    <!-- Copy directories for Ace Editor assets and Octicons -->
     <link data-trunk data-target-path="./ace" rel="copy-dir" href="node_modules/ace-builds/src/">
     <link data-trunk data-target-path="./octicons" rel="copy-dir" href="node_modules/@primer/octicons/build/svg/">
+
+    <!-- Copy PWA assets to dist -->
+    <link data-trunk rel="copy-file" href="manifest.json">
+    <link data-trunk rel="copy-file" href="service-worker.js">
+    <link data-trunk rel="copy-file" href="sw-register.js">
+    <link data-trunk data-target-path="./icons" rel="copy-dir" href="icons/">
+
+    <!-- Service Worker Registration (must be after other scripts) -->
+    <script data-trunk src="sw-register.js"></script>
   </head>
   <body></body>
 </html>
